@@ -11,7 +11,7 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI customOpenIpi() {
         return new OpenAPI().info(
-                new Info().title("Survey").version("1.0.0")
+                new Info().title("TazaMeken").version("1.0.0")
         );
     }
 }
