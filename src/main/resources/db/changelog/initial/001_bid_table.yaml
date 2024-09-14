@@ -23,5 +23,8 @@ databaseChangeLog:
                   name: longitude
                   type: double
               - column:
+                  name: altitude
+                  type: double
+              - column:
                   name: is_accepted
                   type: boolean

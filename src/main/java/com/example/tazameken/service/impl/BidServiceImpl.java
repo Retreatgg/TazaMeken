@@ -21,6 +21,7 @@ public class BidServiceImpl implements BidService {
         Bid bid = Bid.builder()
                 .latitude(bidCreateDto.getLatitude())
                 .longitude(bidCreateDto.getLongitude())
+                .altitude(bidCreateDto.getAltitude())
                 .photoName(photo)
                 .build();
         return buildDto(bidRepository.save(bid));
@@ -30,6 +31,7 @@ public class BidServiceImpl implements BidService {
         return BidDto.builder()
                 .latitude(bid.getLatitude())
                 .longitude(bid.getLongitude())
+                .altitude(bid.getAltitude())
                 .photo(bid.getPhotoName())
                 .build();
     }

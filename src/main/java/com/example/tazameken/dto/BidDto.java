@@ -9,5 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class BidDto {
     private Double latitude;
     private Double longitude;
+    private Double altitude;
     private String photo;
 }

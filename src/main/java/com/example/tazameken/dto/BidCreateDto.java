@@ -7,5 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class BidCreateDto {
     private Double latitude;
     private Double longitude;
+    private Double altitude;
     private MultipartFile photo;
 }

@@ -26,6 +26,10 @@ public class Bid {
     @Column(name = "longitude")
     private Double longitude;
 
+    @Column(name = "altitude")
+    private Double altitude;
+
+
     @Column(name = "is_accepted")
     private Boolean isAccepted;
 
