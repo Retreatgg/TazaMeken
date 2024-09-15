@@ -1,0 +1,99 @@
+databaseChangeLog:
+  - changeSet:
+      id: create tables for surveys
+      author: Argen
+      changes:
+        - createTable:
+            tableName: surveys
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: created_date
+                  type: timestamp
+
+        - createTable:
+            tableName: survey_questions
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: survey_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_survey_questions_id
+                    references: surveys(id)
+              - column:
+                  name: question_text
+                  type: varchar(255)
+
+        - createTable:
+            tableName: survey_answers
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: question_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_survey_answer_question_id
+                    references: survey_questions(id)
+              - column:
+                  name: answer_text
+                  type: varchar(255)
+              - column:
+                  name: is_correct
+                  type: boolean
+
+
+
+        - createTable:
+            tableName: user_answers
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_user_answer_id
+                    references: users(id)
+              - column:
+                  name: answer_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_answer_id
+                    references: survey_answers(id)
+              - column:
+                  name: answered_date
+                  type: timestamp
