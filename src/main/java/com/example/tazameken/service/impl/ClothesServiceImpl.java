@@ -7,7 +7,9 @@ import com.example.tazameken.service.CategoryService;
 import com.example.tazameken.service.ClothesService;
 import com.example.tazameken.service.ColorService;
 import com.example.tazameken.service.GenderService;
+import com.example.tazameken.specification.ClotheSpecification;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,8 +24,9 @@ public class ClothesServiceImpl implements ClothesService {
 
 
     @Override
-    public List<ClotheDto> getClothes() {
-        List<Clothe> clothes = clotheRepository.findAll();
+    public List<ClotheDto> getClothes(Long categoryId) {
+        Specification<Clothe> spec = ClotheSpecification.hasCategory(categoryId);
+        List<Clothe> clothes = clotheRepository.findAll(spec);
         return clothes.stream().map(this::buildDto).toList();
     }
 

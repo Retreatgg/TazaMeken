@@ -8,5 +8,5 @@ import java.util.List;
 @Service
 public interface ClothesService {
 
-    List<ClotheDto> getClothes();
+    List<ClotheDto> getClothes(Long categoryId);
 }
