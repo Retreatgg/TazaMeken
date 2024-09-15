@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: create tables for articles
+      author: Argen
+      changes:
+        - createTable:
+            tableName: articles
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: author_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_article_author_id
+                    references: users(id)
+              - column:
+                  name: created_date
+                  type: timestamp
