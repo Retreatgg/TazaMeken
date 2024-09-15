@@ -39,4 +39,8 @@ public class User {
     @ManyToMany(mappedBy = "users")
     private Set<Role> roles = new LinkedHashSet<>();
 
+    @Size(max = 255)
+    @Column(name = "avatar")
+    private String avatar;
+
 }

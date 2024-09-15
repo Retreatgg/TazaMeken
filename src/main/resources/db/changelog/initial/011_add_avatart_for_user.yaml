@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      author: Argen
+      id: add column avatar for users
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: avatar
+                  type: varchar(255)

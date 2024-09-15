@@ -10,4 +10,5 @@ import org.springframework.stereotype.Service;
 public interface UserService {
     User findByEmail(String username);
     UserDto createUser(UserCreateDto userCreateDto);
+    UserDto getUser();
 }
