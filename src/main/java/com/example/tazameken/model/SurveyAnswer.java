@@ -23,4 +23,8 @@ public class SurveyAnswer {
     @Column(name = "is_correct")
     private Boolean isCorrect;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "question_id")
+    private SurveyQuestion question;
+
 }

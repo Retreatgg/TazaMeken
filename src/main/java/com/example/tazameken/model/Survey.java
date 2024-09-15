@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -27,5 +29,8 @@ public class Survey {
 
     @Column(name = "created_date")
     private Instant createdDate;
+
+    @OneToMany(mappedBy = "survey")
+    private Set<SurveyQuestion> surveyQuestions = new LinkedHashSet<>();
 
 }
