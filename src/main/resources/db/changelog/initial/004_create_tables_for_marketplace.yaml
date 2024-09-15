@@ -1,0 +1,107 @@
+databaseChangeLog:
+  - changeSet:
+      id: create tables for marketplace
+      author: Argen
+      changes:
+        - createTable:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+
+        - createTable:
+            tableName: gender
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+
+        - createTable:
+            tableName: genders
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+
+        - createTable:
+            tableName: colors
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+
+        - createTable:
+            tableName: clothes
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_category_clothes_id
+                    references: categories(id)
+              - column:
+                  name: color_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_color_clothes_id
+                    references: colors(id)
+              - column:
+                  name: gender_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_gender_clothes_id
+                    references: genders(id)
+              - column:
+                  name: size
+                  type: varchar(10)
+              - column:
+                  name: price
+                  type: bigint
+              - column:
+                  name: photo_name
+                  type: varchar(250)
+              - column:
+                  name: is_sold
+                  type: boolean
+
+
+
