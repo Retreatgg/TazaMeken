@@ -3,23 +3,26 @@ package com.example.tazameken.service.impl;
 import com.example.tazameken.dto.UserCreateDto;
 import com.example.tazameken.dto.UserDto;
 import com.example.tazameken.model.User;
+import com.example.tazameken.repository.UserAnswerRepository;
 import com.example.tazameken.repository.UserRepository;
-import com.example.tazameken.service.UserAnswerService;
 import com.example.tazameken.service.UserService;
-import com.example.tazameken.util.AuthUtil;
 import com.example.tazameken.util.FileUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
-    private final UserAnswerService userAnswerService;
+    private final UserAnswerRepository userAnswerRepository;
     private final FileUtil fileUtil;
-    private final AuthUtil authUtil;
 
     @Override
     public User findByEmail(String username) {
@@ -45,14 +48,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUser() {
-        User user = authUtil.getUserByAuth();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = authentication.getName();
+        User user = findByEmail(email);
         return buildDto(user);
+    }
+
+    @Override
+    public List<UserDto> getRating() {
+        List<User> users = userRepository.findAll();
+        return users.stream().map(this::buildDto)
+                .sorted(Comparator.comparing(UserDto::getPoint).reversed())
+                .toList();
     }
 
     private UserDto buildDto(User user) {
         return UserDto.builder()
                 .username(user.getUsername())
-                .point(userAnswerService.getPointsByUserId(user.getId()))
+                .point(userAnswerRepository.findPointByUserId(user.getId()))
                 .avatar(user.getAvatar())
                 .build();
     }
