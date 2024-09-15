@@ -2,8 +2,7 @@ package com.example.tazameken.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.Instant;
 
@@ -11,6 +10,9 @@ import java.time.Instant;
 @Setter
 @Entity
 @Table(name = "user_answers")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_answers_id_gen")

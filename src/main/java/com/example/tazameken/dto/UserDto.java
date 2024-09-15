@@ -7,5 +7,6 @@ import lombok.Data;
 @Builder
 public class UserDto {
     private String username;
-    private String email;
+    private Integer point;
+    private String avatar;
 }
