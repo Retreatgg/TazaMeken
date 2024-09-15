@@ -3019,3 +3019,4 @@ Caused by: org.postgresql.util.PSQLException: ERROR: relation "users_id_seq" alr
 2024-09-15T11:11:52.266+03:00 DEBUG 15328 --- [http-nio-8089-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Using 'application/json', given [*/*] and supported [application/json, application/*+json]
 2024-09-15T11:11:52.268+03:00 DEBUG 15328 --- [http-nio-8089-exec-4] o.s.w.s.m.m.a.HttpEntityMethodProcessor  : Writing [[ClotheDto(id=4, category=CategoryDto(id=2, name=Кепка), color=ColorDto(id=4, name=Синий), gender=Ge (truncated)...]
 2024-09-15T11:11:52.273+03:00 DEBUG 15328 --- [http-nio-8089-exec-4] o.s.web.servlet.DispatcherServlet        : Completed 200 OK
+2024-09-15T11:49:31.833+03:00  WARN 15328 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=37m14s522ms341µs400ns).
